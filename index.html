@@ -3,116 +3,83 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Intro Page</title>
+<title>Birthday Surprise - Intro</title>
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+  body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #A0522D, #FFDAB9); /* brown → peach */
+    overflow: hidden;
+    text-align: center;
+    color: #fff;
+  }
 
-    body {
-        margin: 0;
-        height: 100vh;
-        font-family: 'Playfair Display', serif;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-        background: linear-gradient(135deg, #8B4513, #FFDAB9);
-        position: relative;
-    }
+  h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+  }
 
-    h1 {
-        font-family: 'Playfair Display', serif;
-        font-size: 60px;
-        color: #800080;
-        text-align: center;
-        margin-bottom: 20px;
-        text-shadow: 2px 2px 6px rgba(0,0,0,0.2);
-    }
+  button {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border-radius: 10px;
+    border: none;
+    background: #ff7f50;
+    color: #fff;
+    margin: 10px;
+  }
 
-    .animation-video {
-        width: 400px;
-        height: 500px;
-        border-radius: 15px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        margin-bottom: 30px;
-    }
+  .intro-img {
+    max-width: 60%;
+    border-radius: 15px;
+    margin-bottom: 20px;
+  }
 
-    .buttons {
-        display: flex;
-        gap: 20px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+  .heart {
+    position: absolute;
+    font-size: 1.5em;
+    color: #ff69b4;
+    animation: float 5s linear infinite;
+    opacity: 0.8;
+  }
 
-    .btn {
-        padding: 12px 25px;
-        font-size: 20px;
-        border-radius: 12px;
-        border: none;
-        cursor: pointer;
-        font-family: 'Playfair Display', serif;
-        color: white;
-        transition: transform 0.2s, background-color 0.2s;
-    }
-
-    .next-btn {
-        background-color: #800080;
-    }
-
-    .next-btn:hover {
-        background-color: #DA70D6;
-        transform: scale(1.05);
-    }
-
-    .music-btn {
-        background-color: #FF6F61;
-    }
-
-    .music-btn:hover {
-        background-color: #FF8C42;
-        transform: scale(1.05);
-    }
-
+  @keyframes float {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0.8; }
+    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+  }
 </style>
 </head>
 <body>
 
-<h1>Happy Birthday! 🎉</h1>
+<h1>Happy Birthday!, SQUEEZIE</h1>
 
-<video class="animation-video" src="animations/message1_1.mp4" autoplay loop muted></video>
+<!-- Picture placeholder -->
+<img class="intro-img" src="animations/1.jpg" alt="Birthday Picture">
 
-<div class="buttons">
-    <!-- Play Music Button -->
-    <button class="btn music-btn" id="playMusicBtn">Play Music</button>
-    <!-- Next Page Button -->
-    <button class="btn next-btn" onclick="location.href='message1.html'">Next</button>
-</div>
+<!-- Music -->
+<audio id="music" src="befikar.mp3"></audio>
+<button onclick="document.getElementById('music').play()">Play Music 🎵</button>
 
-<!-- Audio (no autoplay) -->
-<audio id="bgMusic" src="befikar.mp3" loop></audio>
+<!-- Next page -->
+<a href="message1.html"><button>Next →</button></a>
 
+<!-- Heart confetti -->
 <script>
-    const bgMusic = document.getElementById('bgMusic');
-    const playBtn = document.getElementById('playMusicBtn');
-
-    playBtn.addEventListener('click', () => {
-        bgMusic.play();
-        playBtn.style.display = 'none';
-    });
-
-    // Keep music volume reasonable
-    bgMusic.volume = 0.5;
-
-    // Save current music time before leaving
-    window.addEventListener('beforeunload', () => {
-        localStorage.setItem('musicTime', bgMusic.currentTime);
-    });
-
-    // Resume music from last time on load
-    window.addEventListener('load', () => {
-        const time = localStorage.getItem('musicTime');
-        if(time) bgMusic.currentTime = time;
-    });
+  for(let i = 0; i < 20; i++) {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = (3 + Math.random() * 5) + 's';
+    heart.style.fontSize = (15 + Math.random() * 25) + 'px';
+    heart.textContent = '❤️';
+    document.body.appendChild(heart);
+  }
 </script>
 
 </body>

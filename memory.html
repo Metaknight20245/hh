@@ -5,159 +5,83 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Memory Page</title>
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+  body {
+    margin: 0;
+    font-family: 'Cursive', serif;
+    background: linear-gradient(135deg, #FFC0CB, #FFDAB9); /* peachy gradient */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 30px;
+    height: 100vh;
+    overflow: hidden;
+  }
 
-    body {
-        margin: 0;
-        height: 100vh;
-        font-family: 'Playfair Display', serif;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-        background: linear-gradient(135deg, #8B4513, #FFDAB9);
-        position: relative;
-    }
+  h2 { font-size: 2.5em; margin-bottom: 20px; color: purple; }
 
-    h2 {
-        font-family: 'Playfair Display', serif;
-        font-size: 55px;
-        color: #800080; /* Purple */
-        text-shadow: 2px 2px 6px rgba(0,0,0,0.2);
-        margin-bottom: 30px;
-        text-align: center;
-    }
+  .memory-img {
+    max-width: 70%;
+    max-height: 400px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+  }
 
-    .content {
-        display: flex;
-        align-items: flex-start;
-        justify-content: center;
-        gap: 40px;
-        flex-wrap: wrap;
-    }
+  p {
+    font-size: 1.5em;
+    color: purple;
+    margin-bottom: 20px;
+  }
 
-    .memory-video {
-        width: 350px;
-        height: 350px;
-        border-radius: 15px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
+  button {
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    background: #ff7f50;
+    color: #fff;
+  }
 
-    .memory-display {
-        text-align: center;
-        max-width: 500px; /* increased width */
-    }
+  /* Floating flowers */
+  .flower {
+    position: absolute;
+    font-size: 1.2em;
+    color: #FF69B4;
+    animation: floatFlower linear infinite;
+    opacity: 0.8;
+  }
 
-    .memory-display img {
-        width: 100%; /* make it fill container width */
-        height: auto;
-        max-height: 600px; /* increased height */
-        object-fit: cover;
-        border-radius: 15px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-
-    .memory-display p {
-        font-family: 'Playfair Display', serif;
-        font-size: 28px;
-        color: #800080; /* Purple */
-        margin-top: 10px;
-    }
-
-    /* CSS flowers */
-    .flower {
-        position: absolute;
-        width: 25px;
-        height: 25px;
-        background: radial-gradient(circle, #800080 0%, #DA70D6 70%);
-        border-radius: 50%;
-        animation: spinFloat 10s linear infinite;
-        opacity: 0.8;
-    }
-
-    .flower::before,
-    .flower::after {
-        content: '';
-        position: absolute;
-        width: 25px;
-        height: 25px;
-        background: radial-gradient(circle, #800080 0%, #DA70D6 70%);
-        border-radius: 50%;
-    }
-
-    .flower::before { top: -12px; left: 0; }
-    .flower::after { left: 12px; top: 0; }
-
-    @keyframes spinFloat {
-        0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-        50% { opacity: 1; }
-        100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
-    }
-
-    .nav-btn {
-        margin-top: 30px;
-        padding: 12px 25px;
-        font-size: 20px;
-        background-color: #800080; /* Purple */
-        border: none;
-        border-radius: 12px;
-        cursor: pointer;
-        color: white;
-        transition: transform 0.2s, background-color 0.2s;
-    }
-
-    .nav-btn:hover {
-        transform: scale(1.05);
-        background-color: #DA70D6;
-    }
-
+  @keyframes floatFlower {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0.8; }
+    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+  }
 </style>
 </head>
 <body>
 
-<h2>Memory Page 🌸</h2>
+<h2>Memory Page</h2>
 
-<div class="content">
-    <!-- Memory animation video -->
-    <video class="memory-video" src="animations/memory.mp4" autoplay loop muted></video>
+<!-- Picture -->
+<img class="memory-img" src="animations/your_picture.jpg" alt="Memory Picture">
 
-    <!-- Hardcoded picture + caption -->
-    <div class="memory-display">
-        <img src="animations/your_picture.jpg" alt="Memory Image">
-        <p>CREEPY RIGHT!! i was surprised too that i still had this picture of u par maine stalk karna apne bade bujurgo se seekha hai (you) but i am glad i still had this photo of u, a lot lot gladder then u can imagine. 💜</p>
-    </div>
-</div>
+<!-- Caption -->
+<p>CREEPY RIGHT!! i was surprised too that i still had this picture of u par maine stalk karna apne bade bujurgo se seekha hai (you) but i am glad i still had this photo of u, a lot lot gladder then u can imagine. 💜</p>
 
-<!-- Navigation button -->
-<button class="nav-btn" onclick="location.href='message2.html'">Next</button>
+<!-- Next Page -->
+<a href="message2.html"><button>Next →</button></a>
 
-<!-- Background music -->
-<audio id="bgMusic" src="befikar.mp3" autoplay loop></audio>
-
+<!-- Floating flowers -->
 <script>
-    const bgMusic = document.getElementById('bgMusic');
-    bgMusic.volume = 0.5;
-
-    window.addEventListener('beforeunload', () => {
-        localStorage.setItem('musicTime', bgMusic.currentTime);
-    });
-
-    window.addEventListener('load', () => {
-        const time = localStorage.getItem('musicTime');
-        if(time) bgMusic.currentTime = time;
-    });
-
-    // Spinning flowers dynamically
-    const flowerCount = 6;
-    for(let i=0; i<flowerCount; i++){
-        const flower = document.createElement('div');
-        flower.className = 'flower';
-        flower.style.left = Math.random()*90 + '%';
-        flower.style.animationDuration = (8 + Math.random()*8) + 's';
-        flower.style.width = flower.style.height = (20 + Math.random()*20) + 'px';
-        document.body.appendChild(flower);
-    }
+  for(let i = 0; i < 15; i++) {
+    const flower = document.createElement('div');
+    flower.classList.add('flower');
+    flower.style.left = Math.random() * 100 + 'vw';
+    flower.style.animationDuration = (4 + Math.random() * 5) + 's';
+    flower.style.fontSize = (15 + Math.random() * 20) + 'px';
+    flower.textContent = '🌸';
+    document.body.appendChild(flower);
+  }
 </script>
 
 </body>

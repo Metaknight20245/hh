@@ -5,100 +5,71 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The End</title>
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
+  body {
+    margin: 0;
+    font-family: 'Cursive', serif;
+    background: linear-gradient(135deg, #000000, #FFFFFF);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    overflow: hidden;
+    color: #FF0000; /* neon red */
+  }
 
-    body {
-        margin: 0;
-        height: 100vh;
-        font-family: 'Parisienne', cursive;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-        background: linear-gradient(135deg, #000000, #ffffff);
-        position: relative;
-    }
+  h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+  }
 
-    h1 {
-        font-family: 'Parisienne', cursive;
-        font-size: 70px;
-        color: #39FF14;
-        text-shadow: 0 0 15px #39FF14, 0 0 25px #00FF00;
-        margin-bottom: 30px;
-        text-align: center;
-    }
+  .end-img {
+    max-width: 70%;
+    max-height: 400px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+  }
 
-    video {
-        width: 450px;
-        height: 450px;
-        border-radius: 15px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
+  p {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
 
-    /* Spinning flowers */
-    .flower {
-        position: absolute;
-        width: 25px;
-        height: 25px;
-        background: radial-gradient(circle, #39FF14 0%, #00FF00 70%);
-        border-radius: 50%;
-        animation: spinFloat 10s linear infinite;
-        opacity: 0.8;
-    }
+  .heart {
+    position: absolute;
+    color: #FF1493;
+    animation: floatHearts linear infinite;
+    opacity: 0.8;
+  }
 
-    .flower::before,
-    .flower::after {
-        content: '';
-        position: absolute;
-        width: 25px;
-        height: 25px;
-        background: radial-gradient(circle, #39FF14 0%, #00FF00 70%);
-        border-radius: 50%;
-    }
-
-    .flower::before { top: -12px; left: 0; }
-    .flower::after { left: 12px; top: 0; }
-
-    @keyframes spinFloat {
-        0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-        50% { opacity: 1; }
-        100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
-    }
-
+  @keyframes floatHearts {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+  }
 </style>
 </head>
 <body>
 
-<h1>The End 🌟</h1>
+<h1>The End❤️</h1>
 
-<video src="animations/message2_2.mp4" autoplay loop muted></video>
+<!-- Picture placeholder -->
+<img class="end-img" src="animations/4.jpg" alt="End Picture">
 
-<audio id="bgMusic" src="befikar.mp3" autoplay loop></audio>
+<p>Thank you for being part of this little journey... 💕</p>
+<p>Always with you. 🌹</p>
 
+<!-- Floating hearts -->
 <script>
-    const bgMusic = document.getElementById('bgMusic');
-    bgMusic.volume = 0.5;
-
-    window.addEventListener('beforeunload', () => {
-        localStorage.setItem('musicTime', bgMusic.currentTime);
-    });
-
-    window.addEventListener('load', () => {
-        const time = localStorage.getItem('musicTime');
-        if(time) bgMusic.currentTime = time;
-    });
-
-    // Spinning flowers dynamically
-    const flowerCount = 6;
-    for(let i=0; i<flowerCount; i++){
-        const flower = document.createElement('div');
-        flower.className = 'flower';
-        flower.style.left = Math.random()*90 + '%';
-        flower.style.animationDuration = (8 + Math.random()*8) + 's';
-        flower.style.width = flower.style.height = (20 + Math.random()*20) + 'px';
-        document.body.appendChild(flower);
-    }
+  for(let i = 0; i < 20; i++) {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = (4 + Math.random() * 5) + 's';
+    heart.style.fontSize = (20 + Math.random() * 25) + 'px';
+    heart.textContent = '❤️';
+    document.body.appendChild(heart);
+  }
 </script>
 
 </body>
