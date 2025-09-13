@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Message 1</title>
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background: linear-gradient(135deg, #8B4513, #FFDAB9); /* same gradient */
+        position: relative;
+    }
+
+    h2 {
+        font-family: 'Parisienne', cursive;
+        font-size: 50px;
+        color: #FF6F61;
+        text-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    video {
+        width: 600px; /* bigger horizontal video */
+        height: 350px;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        margin-bottom: 20px;
+    }
+
+    .message-text {
+        max-width: 600px;
+        text-align: center;
+        font-size: 22px;
+        color: #333;
+        margin-bottom: 30px;
+        line-height: 1.5;
+    }
+
+    .nav-btn {
+        padding: 12px 25px;
+        font-size: 20px;
+        background-color: #ffb07c;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        color: white;
+        transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .nav-btn:hover {
+        background-color: #ff8c42;
+        transform: scale(1.05);
+    }
+</style>
+</head>
+<body>
+
+<h2>My Sweet Message To You 💌</h2>
+
+<!-- Horizontal message animation -->
+<video src="animations/message1_2.mp4" autoplay loop muted></video>
+
+<div class="message-text">
+    You thought i would forget about this didn't u, well i didnt and even with our differences right now i still wanted to be the first to wish u A VERY HAPPY BDAY, ARU. I can still call u that right?? well its your bday today so ill consider this a privilige for me today. tbh i wish i knew your birth time so tht i could've shared this to u then!!!  💖
+</div>
+
+<!-- Navigation button -->
+<button class="nav-btn" onclick="location.href='memory.html'">Next</button>
+
+<!-- Background music -->
+<audio id="bgMusic" src="befikar.mp3" autoplay loop></audio>
+
+<script>
+    const bgMusic = document.getElementById('bgMusic');
+    bgMusic.volume = 0.5;
+
+    window.addEventListener('beforeunload', () => {
+        localStorage.setItem('musicTime', bgMusic.currentTime);
+    });
+
+    window.addEventListener('load', () => {
+        const time = localStorage.getItem('musicTime');
+        if(time) bgMusic.currentTime = time;
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Message 2</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+    body {
+        margin: 0;
+        height: 100vh;
+        font-family: 'Playfair Display', serif; /* Elegant font */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background: linear-gradient(135deg, #000000, #ffffff);
+        position: relative;
+    }
+
+    h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 55px;
+        color: #FF0000; /* Red */
+        text-shadow: 0 0 10px #FF0000, 0 0 20px #FF5555;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        flex-wrap: wrap;
+    }
+
+    video {
+        width: 400px;
+        height: 400px;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .message-text {
+        max-width: 400px;
+        text-align: center;
+        font-size: 24px;
+        color: #FF0000; /* Red */
+        line-height: 1.5;
+        text-shadow: 0 0 10px #FF0000;
+        font-family: 'Playfair Display', serif; /* Elegant font */
+    }
+
+    .nav-btn {
+        margin-top: 30px;
+        padding: 12px 25px;
+        font-size: 20px;
+        background-color: #FF0000;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        color: white;
+        transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .nav-btn:hover {
+        transform: scale(1.05);
+        background-color: #FF5555;
+    }
+
+    /* Spinning flowers */
+    .flower {
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        background: radial-gradient(circle, #FF0000 0%, #FF5555 70%);
+        border-radius: 50%;
+        animation: spinFloat 10s linear infinite;
+        opacity: 0.8;
+    }
+
+    .flower::before,
+    .flower::after {
+        content: '';
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        background: radial-gradient(circle, #FF0000 0%, #FF5555 70%);
+        border-radius: 50%;
+    }
+
+    .flower::before { top: -12px; left: 0; }
+    .flower::after { left: 12px; top: 0; }
+
+    @keyframes spinFloat {
+        0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+        50% { opacity: 1; }
+        100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+    }
+
+</style>
+</head>
+<body>
+
+<h2>For u, my dear (i still prefer squeezie) ❤️</h2>
+
+<div class="content">
+    <video src="animations/message2_1.mp4" autoplay loop muted></video>
+    <div class="message-text">
+        I HAVE A LOT TO SAY, a lot to blame you for and a lot to apologize for, and thts the thing thts been keeping me going for the past few months but even todaay ill say the least I MISS YOU, aru (using my speacial privilige) 💖<br>
+         and here also a poem for u to prove tht i can still write <br> 
+	The seasons pass, but my story stays <br>
+	caught mid sentence where you left. <br>
+	My soul stands still, ink paused in longing, <br>
+	as I fold time like letters unsent.<br>
+	Roses sleep between the pages,<br>
+	and silence hums where your name once lived. <br>
+	Perhaps one day, you’ll open the book <br>
+	and trace the ache I never learned to close. <br>
+    </div>
+</div>
+
+<button class="nav-btn" onclick="location.href='end.html'">Next</button>
+
+<audio id="bgMusic" src="befikar.mp3" autoplay loop></audio>
+
+<script>
+    const bgMusic = document.getElementById('bgMusic');
+    bgMusic.volume = 0.5;
+
+    window.addEventListener('beforeunload', () => {
+        localStorage.setItem('musicTime', bgMusic.currentTime);
+    });
+
+    window.addEventListener('load', () => {
+        const time = localStorage.getItem('musicTime');
+        if(time) bgMusic.currentTime = time;
+    });
+
+    // Spinning flowers dynamically
+    const flowerCount = 6;
+    for(let i=0; i<flowerCount; i++){
+        const flower = document.createElement('div');
+        flower.className = 'flower';
+        flower.style.left = Math.random()*90 + '%';
+        flower.style.animationDuration = (8 + Math.random()*8) + 's';
+        flower.style.width = flower.style.height = (20 + Math.random()*20) + 'px';
+        document.body.appendChild(flower);
+    }
+</script>
+
+</body>
+</html>
